@@ -1,0 +1,19 @@
+required-players: 2
+countdown-seconds: 5
+lobby-spawn:
+  world: 'world'
+  x: 405.5
+  y: 127
+  z: 717.5
+  yaw: -90
+  pitch: 0
+arenas:
+  0:
+    type: 'HIKABRAIN-SOLO'
+    paste-position:
+      world: 'void'
+      x: 100
+      y: 60
+      z: 100
+      yaw: 0
+      pitch: 0
