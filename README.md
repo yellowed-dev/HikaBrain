@@ -1,9 +1,9 @@
 # HikaBrain
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
-A recreation of the classic french Minecraft minigame Hikabrain! Made for Paper 1.20+ with Kotlin
+A recreation of the classic french Minecraft minigame HikaBrain! Made for Paper 1.20+ with Kotlin
 
-- 🎥🔴 **[Watch the demo on YouTube!](https://www.youtube.com/watch?v=VIDEO_ID)**
+- 🎥🔴 **[Watch the demo on YouTube!](https://youtu.be/Sg8f3zO9CNc)**
 
 # Usage
 WorldEdit is required to use this plugin
