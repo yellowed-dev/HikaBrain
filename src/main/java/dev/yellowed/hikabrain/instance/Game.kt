@@ -10,11 +10,13 @@ import org.bukkit.Material
 import org.bukkit.Sound
 import org.bukkit.attribute.Attribute
 import org.bukkit.attribute.AttributeModifier
+import org.bukkit.block.Block
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.HandlerList
 import org.bukkit.event.Listener
+import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.event.block.BlockPlaceEvent
 import org.bukkit.event.entity.EntityDamageByEntityEvent
 import org.bukkit.event.entity.EntityDamageEvent
@@ -24,6 +26,7 @@ import org.bukkit.event.player.PlayerMoveEvent
 import org.bukkit.inventory.ItemStack
 import java.io.File
 import java.util.*
+import kotlin.math.floor
 
 class Game(protected val arena: Arena) : Listener {
     private val lastDamagers = HashMap<UUID, UUID>()
@@ -187,13 +190,27 @@ class Game(protected val arena: Arena) : Listener {
     @EventHandler
     fun onBlockPlace(e: BlockPlaceEvent) {
 
-
         if (arena.players.contains(e.player.uniqueId)) {
-            // Check for height limit
-            if (e.block.location.y >= arena.maximumHeight) {
+
+            val block = e.block
+            if (block.location.y >= arena.maximumHeight) { // Check for height limit
                 e.isCancelled = true
                 e.player.sendError("Height limit!")
+            } else if (listOf(arena.firstTeamGoal, arena.secondTeamGoal)
+                .any { floor(it.x) == block.location.x && floor(it.z) == block.location.z }) { // Check for goals
+                e.isCancelled = true
+                e.player.sendError("You can't build on goals!")
             }
+        }
+    }
+
+    @EventHandler
+    fun onBlockBreak(e: BlockBreakEvent) {
+        if (arena.players.contains(e.player.uniqueId) && e.block.type != Material.SMOOTH_SANDSTONE) {
+            e.isCancelled = true
+            e.player.sendError("You can only break sandstone blocks!")
+        } else {
+            e.isDropItems = false
         }
     }
 
