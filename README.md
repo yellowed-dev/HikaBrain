@@ -39,6 +39,6 @@ arenas:
 ```
 
 # License
-Distributed under the CC BY-NC-SA 4.0
+Distributed under the CC [BY-NC-SA 4.0](LICENSE.md) license
 
 
